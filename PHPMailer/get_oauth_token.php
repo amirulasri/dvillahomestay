@@ -159,6 +159,15 @@ if (!isset($_GET['code'])) {
     );
 
     // Use this to get a new access token if the old one expires
-    echo 'Refresh Token: ' . $token->getRefreshToken();
-    
+    $tokenbaru = $token->getRefreshToken();
+
+    include('../setup.php');
+
+    $queryupdatetoken = mysqli_query($conn, "UPDATE emeltoken SET token = '$tokenbaru'");
+    if($queryupdatetoken){
+        echo '<script>alert("KEMASKINI TOKEN EMEL BERJAYA"); window.location="../admin/administrator/index.php";</script>';
+    }else{
+        echo '<script>alert("GAGAL KEMASKINI TOKEN EMEL"); window.location="../admin/administrator/index.php";</script>';
+    }
+
 }

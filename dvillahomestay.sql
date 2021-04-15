@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2020 at 05:59 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.7
+-- Generation Time: Apr 15, 2021 at 05:24 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,8 +39,25 @@ CREATE TABLE `adminlogin` (
 --
 
 INSERT INTO `adminlogin` (`username`, `password`, `namaadmin`, `role`) VALUES
-('admin', '12345678', 'Admin', 'root'),
-('adminamirul', '12345678', 'Amirul Asri', 'standard');
+('admin', '12345678', 'Admin', 'root');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emeltoken`
+--
+
+CREATE TABLE `emeltoken` (
+  `id` int(11) NOT NULL,
+  `token` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `emeltoken`
+--
+
+INSERT INTO `emeltoken` (`id`, `token`) VALUES
+(1, '1//0g0KUuESXYzdWCgYIARAAGBASNwF-L9IrnzHXy7qiS60rZgGZEzL2eRuryoUeH-BEc-T0zmF5ZZMON59ECs9-C1gMKfTkS4wBUzo');
 
 -- --------------------------------------------------------
 
@@ -59,7 +76,7 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`email`, `namapelanggan`, `notelpelanggan`) VALUES
-('amirulasrix@gmail.com', 'Amirul Asri', '01135020493');
+('amirulasrix@gmail.com', 'MOHAMAD AMIRUL ASRI BIN AZMI', '01135020493');
 
 -- --------------------------------------------------------
 
@@ -122,14 +139,6 @@ CREATE TABLE `tempahan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tempahan`
---
-
-INSERT INTO `tempahan` (`idtempahan`, `idrumah`, `email`, `tarikhmasuk`, `tarikhkeluar`, `bildewasa`, `bilkanakkanak`, `jumlahharga`, `namapelanggan`, `notelpelanggan`, `statusbayaran`) VALUES
-(22, 4, 'amirulasrix@gmail.com', '2020-09-16', '2020-10-01', 3, 2, '1650', 'Amirul Asri', '01135020493', 'Belum dibuat'),
-(24, 4, 'amirulasrix@gmail.com', '2020-10-14', '2024-12-28', 4, 4, '168960', 'Amirul Asri', '01135020493', 'Belum dibuat');
-
---
 -- Indexes for dumped tables
 --
 
@@ -138,6 +147,12 @@ INSERT INTO `tempahan` (`idtempahan`, `idrumah`, `email`, `tarikhmasuk`, `tarikh
 --
 ALTER TABLE `adminlogin`
   ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `emeltoken`
+--
+ALTER TABLE `emeltoken`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `pelanggan`
@@ -170,6 +185,12 @@ ALTER TABLE `tempahan`
 --
 
 --
+-- AUTO_INCREMENT for table `emeltoken`
+--
+ALTER TABLE `emeltoken`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `rumah`
 --
 ALTER TABLE `rumah`
@@ -179,7 +200,7 @@ ALTER TABLE `rumah`
 -- AUTO_INCREMENT for table `tempahan`
 --
 ALTER TABLE `tempahan`
-  MODIFY `idtempahan` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idtempahan` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables

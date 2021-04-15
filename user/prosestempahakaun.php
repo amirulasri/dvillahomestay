@@ -21,6 +21,11 @@ if (empty($bildewasa)) {
     $bildewasa = 1;
 }
 
+//DAPATKAN DATA TOKEN WEB
+$querytoken = mysqli_query($conn, "SELECT * FROM emeltoken");
+$gettoken = mysqli_fetch_assoc($querytoken);
+$token = $gettoken['token'];
+
 //Periksa sama ada rumah itu ditempah pada tarikh yang tersedia
 $semaktarikh = mysqli_query($conn, "SELECT * FROM tempahan WHERE idrumah = '$idrumah'");
 $tidaktersedia = mysqli_num_rows($semaktarikh);
@@ -80,7 +85,7 @@ if ($tidaktersedia == 0) {
         $mail->oauthUserEmail = "dvillahomestays@gmail.com";                 // SMTP username
         $mail->oauthClientId = "207643860161-38pivgr6v8ohv1e3jg8fiju1hg3dj5r1.apps.googleusercontent.com";
 		$mail->oauthClientSecret = "xpI7wE0Bhhoym4BfEZ2p-Ip-";
-		$mail->oauthRefreshToken = "1//0guwD4HPM_ztBCgYIARAAGBASNwF-L9IrbCt2pS76ATTZjzWLU6swJQH95ww9f03i3okYMfe5hXsZHuxAr386HuLq48QwVoYkihc";
+		$mail->oauthRefreshToken = "$token";
         $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 465;                                    // TCP port to connect to
 		$mail->AuthType = 'XOAUTH2';
@@ -178,7 +183,7 @@ if ($tidaktersedia == 0) {
             $mail->oauthUserEmail = "dvillahomestays@gmail.com";                 // SMTP username
 			$mail->oauthClientId = "207643860161-38pivgr6v8ohv1e3jg8fiju1hg3dj5r1.apps.googleusercontent.com";
 			$mail->oauthClientSecret = "xpI7wE0Bhhoym4BfEZ2p-Ip-";
-			$mail->oauthRefreshToken = "1//0gDjnwBPJZWtQCgYIARAAGBASNwF-L9IrwHbz4sAAbLZgKTuDehdZHfZpMAwn3o-YPmgozkxkEKR7arc7XWwVE3nbK29RIyWXnfE";
+			$mail->oauthRefreshToken = "$token";
             $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 465;                                    // TCP port to connect to
 			$mail->AuthType = 'XOAUTH2';
